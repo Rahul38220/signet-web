@@ -24,10 +24,124 @@
             <h2 class="company-name">Kinetovox Technologies</h2>
             <h1 class="product-title">Signet</h1>
             <p class="tagline">Where silence finds its voice.</p>
-            <div class="glow-button">Explore the Future</div>
+            <a href="#product" class="glow-button">Explore the Future</a>
         </div>
         <div class="hero-glow"></div>
     </section>
 
+    <section id="product" class="product-section">
+        <div class="section-header">
+            <h2>The Anatomy of Signet</h2>
+            <p>Precision engineering meets human necessity.</p>
+        </div>
+
+        <div class="glove-container">
+            <div class="glove-visual">
+                <div class="hotspot" style="top: 20%; left: 45%;" onclick="showDetail('flex')">
+                    <div class="pulse"></div>
+                </div>
+                <div class="hotspot" style="top: 55%; left: 55%;" onclick="showDetail('esp32')">
+                    <div class="pulse"></div>
+                </div>
+                <div class="hotspot" style="top: 75%; left: 35%;" onclick="showDetail('mpu')">
+                    <div class="pulse"></div>
+                </div>
+                <img src="https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?auto=format&fit=crop&q=80&w=1000" alt="Smart Glove Visual" class="glove-img">
+            </div>
+
+            <div id="detail-box" class="detail-box">
+                <h3 id="part-title">Interactive Core</h3>
+                <p id="part-desc">Click on the glowing sensors to explore how Signet captures the nuance of human gesture.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="working" class="working-section">
+        <div class="section-header">
+            <h2>System Flow</h2>
+            <p>From physical gesture to audible speech in milliseconds.</p>
+        </div>
+
+        <div class="flow-pipeline">
+            <div class="flow-node">
+                <span class="node-icon">👋</span>
+                <h4>Gesture</h4>
+                <p>User performs a hand sign</p>
+            </div>
+            <div class="flow-connector"></div>
+            <div class="flow-node">
+                <span class="node-icon">📡</span>
+                <h4>Sensing</h4>
+                <p>Flex & MPU6050 capture data</p>
+            </div>
+            <div class="flow-connector"></div>
+            <div class="flow-node highlight">
+                <span class="node-icon">🧠</span>
+                <h4>Processing</h4>
+                <p>ESP32 maps data to words</p>
+            </div>
+            <div class="flow-connector"></div>
+            <div class="flow-node">
+                <span class="node-icon">🔊</span>
+                <h4>Speech</h4>
+                <p>Speaker outputs the phrase</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="physics" class="physics-section">
+        <div class="section-header">
+            <h2>Physics Integration</h2>
+            <p>The science of converting motion to data.</p>
+        </div>
+
+        <div class="physics-grid">
+            <div class="physics-card">
+                <h3>Voltage Divider Circuit</h3>
+                <p>As the flex sensor bends, its resistance ($R_{flex}$) increases, changing the output voltage ($V_{out}$) readable by the ESP32 via Ohm's Law and Voltage Division.</p>
+                
+                <div class="simulator">
+                    <h4>Live Voltage Simulator</h4>
+                    <div class="sim-control">
+                        <label>Sensor State: <span id="r-val" style="color:var(--teal-accent)">10.0k Ω</span></label>
+                        <input type="range" id="resistor-slider" min="10000" max="40000" value="10000" oninput="updateSimulator()">
+                    </div>
+                    <div class="sim-result">
+                        <p>Output Voltage ($V_{out}$): <strong id="v-out">1.65 V</strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="team" class="team-section">
+        <div class="section-header">
+            <h2>The Innovators</h2>
+            <p>The minds behind Kinetovox Technologies.</p>
+        </div>
+        <div class="team-grid">
+            <div class="team-card">
+                <div class="member-photo"><span>Lead</span></div>
+                <h3>Your Name</h3>
+                <p>System Architect</p>
+            </div>
+            <div class="team-card">
+                <div class="member-photo"><span>Dev</span></div>
+                <h3>Partner Name</h3>
+                <p>Hardware Engineer</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="acknowledgement">
+        <div class="ack-content">
+            <h3>Acknowledgements</h3>
+            <p>We extend our gratitude to our mentors and the open-source community. This project bridges the gap in communication for the speech-impaired through accessible technology.</p>
+            <div class="divider"></div>
+            <p class="copyright">© 2026 Kinetovox Technologies. Built for Class 12 School Project.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
