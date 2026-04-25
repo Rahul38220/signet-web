@@ -6,6 +6,8 @@
     <title>Kinetovox | Signet</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
 
@@ -87,6 +89,17 @@
                 <p>Speaker outputs the phrase</p>
             </div>
         </div>
+        <div class="terminal-container">
+            <div class="terminal-header">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+                <span class="status-text">SIGNET_CORE v1.0 - LIVE_LOG</span>
+            </div>
+            <div id="log-body" class="terminal-body">
+                <p>> System initialized. Waiting for gesture...</p>
+            </div>
+        </div>
     </section>
 
     <section id="physics" class="physics-section">
@@ -143,5 +156,33 @@
     </footer>
 
     <script src="script.js"></script>
+<script>
+    const logs = [
+        "> Gesture detected: Index finger flexed 45°",
+        "> Analyzing MPU6050 spatial orientation...",
+        "> Match found: ASL 'Point'",
+        "> Processing command...",
+        "> Audio stream sent to speaker.",
+        "> [SUCCESS] Phrase: 'Look there'"
+    ];
+
+    let i = 0;
+    function typeLog() {
+        const logBody = document.getElementById('log-body');
+        if (i < logs.length) {
+            const p = document.createElement('p');
+            p.textContent = logs[i];
+            logBody.appendChild(p);
+            logBody.scrollTop = logBody.scrollHeight; // Auto-scrolls to bottom
+            i++;
+            setTimeout(typeLog, 2000);
+        }
+    }
+
+    // This starts the typing as soon as the page loads
+    window.onload = () => {
+        setTimeout(typeLog, 1000);
+    };
+</script>
 </body>
 </html>
