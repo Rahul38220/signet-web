@@ -8,12 +8,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
     <script src="https://polyfill.io/v4/polyfill.min.js?features=es6"></script>
     <script>
-  window.MathJax = {
-    tex: {
-      inlineMath: [['$', '$'], ['\\(', '\\)']]
-    }
-  };
-</script>
+        window.MathJax = { 
+            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] }   
+        };  
+    </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
@@ -39,28 +37,28 @@
     </section>
 
     <section id="product" class="product-section">
-    <div class="section-header">
-        <h2>Product Anatomy</h2>
-        <p>Click the components to see how Signet processes your world.</p>
-    </div>
-
-    <div class="anatomy-wrapper">
-        <img src="glove-anatomy.jpg" alt="Signet Glove Hardware" class="anatomy-img">
-
-        <div class="hotspot" style="top: 20%; left: 10%; width: 35%; height: 20%;" onclick="showInfo('esp32')"></div>
-<div class="hotspot" style="top: 40%; left: 5%; width: 35%; height: 15%;" onclick="showInfo('mpu')"></div>
-<div class="hotspot" style="top: 70%; left: 5%; width: 35%; height: 20%;" onclick="showInfo('flex')"></div>
-
-<div class="hotspot" style="top: 10%; left: 65%; width: 30%; height: 20%;" onclick="showInfo('audio')"></div>
-<div class="hotspot" style="top: 35%; left: 75%; width: 25%; height: 35%;" onclick="showInfo('speaker')"></div>
-<div class="hotspot" style="top: 70%; left: 60%; width: 35%; height: 25%;" onclick="showInfo('resistors')"></div>
-        <div id="info-panel" class="glass-panel">
-            <h3 id="panel-title">Select a component</h3>
-            <p id="panel-desc">Click on the labels to see technical details.</p>
-            <button onclick="closePanel()" class="close-btn">×</button>
+        <div class="section-header">
+            <h2>Product Anatomy</h2>
+            <p>Click the components to see how Signet processes your world.</p>
         </div>
-    </div>
-</section>
+
+        <div class="anatomy-wrapper">
+            <img src="glove-anatomy.jpg" alt="Signet Glove Hardware" class="anatomy-img">
+
+            <div class="hotspot" style="top: 15%; left: 10%; width: 35%; height: 20%;" onclick="showInfo('esp32')"></div>
+            <div class="hotspot" style="top: 40%; left: 5%; width: 35%; height: 15%;" onclick="showInfo('mpu')"></div>
+            <div class="hotspot" style="top: 70%; left: 5%; width: 35%; height: 20%;" onclick="showInfo('flex')"></div>
+            <div class="hotspot" style="top: 8%; left: 65%; width: 30%; height: 20%;" onclick="showInfo('audio')"></div>
+            <div class="hotspot" style="top: 35%; left: 75%; width: 25%; height: 35%;" onclick="showInfo('speaker')"></div>
+            <div class="hotspot" style="top: 70%; left: 60%; width: 35%; height: 25%;" onclick="showInfo('resistors')"></div>
+
+            <div id="info-panel" class="glass-panel">
+                <h3 id="panel-title">Select a component</h3>
+                <p id="panel-desc">Click on the labels to see technical details.</p>
+                <button onclick="closePanel()" class="close-btn">×</button>
+            </div>
+        </div>
+    </section>
 
     <section id="working" class="working-section">
         <div class="section-header">
@@ -93,6 +91,7 @@
                 <p>Speaker outputs the phrase</p>
             </div>
         </div>
+
         <div class="terminal-container">
             <div class="terminal-header">
                 <span class="dot red"></span>
@@ -115,12 +114,12 @@
         <div class="physics-grid">
             <div class="physics-card">
                 <h3>Voltage Divider Circuit</h3>
-                <p>As the flex sensor bends, its resistance ($R_{flex}$) increases, changing the output voltage ($V_{out}$) readable by the ESP32 via Ohm's Law and Voltage Division.</p>
-                
+                <p>As the flex sensor bends, its resistance ($R_{flex}$) increases, changing the output voltage ($V_{out}$) readable by the ESP32.</p>
+
                 <div class="simulator">
                     <h4>Live Voltage Simulator</h4>
                     <div class="sim-control">
-                        <label>Sensor State: <span id="r-val" style="color:var(--teal-accent)">10.0k Ω</span></label>
+                        <label>Sensor Resistance: <span id="r-val" style="color:var(--teal-accent)">10.0k Ω</span></label>
                         <input type="range" id="resistor-slider" min="10000" max="40000" value="10000" oninput="updateSimulator()">
                     </div>
                     <div class="sim-result">
@@ -153,90 +152,82 @@
     <footer class="acknowledgement">
         <div class="ack-content">
             <h3>Acknowledgements</h3>
-            <p>We extend our gratitude to our mentors and the open-source community. This project bridges the gap in communication for the speech-impaired through accessible technology.</p>
+            <p>We extend our gratitude to our mentors and the open-source community. This project bridges the gap in communication for the speech-impaired.</p>
             <div class="divider"></div>
             <p class="copyright">© 2026 Kinetovox Technologies. Built for Class 12 School Project.</p>
         </div>
     </footer>
 
-    <script src="script.js"></script>
-<script>
-    const logs = [
-        "> Gesture detected: Index finger flexed 45°",
-        "> Analyzing MPU6050 spatial orientation...",
-        "> Match found: ASL 'Point'",
-        "> Processing command...",
-        "> Audio stream sent to speaker.",
-        "> [SUCCESS] Phrase: 'Look there'"
-    ];
+    <script>
+        // 1. Terminal Logic
+        const logs = [
+            "> Gesture detected: Index finger flexed 45°",
+            "> Analyzing MPU6050 spatial orientation...",
+            "> Match found: ASL 'Point'",
+            "> Processing command...",
+            "> Audio stream sent to speaker.",
+            "> [SUCCESS] Phrase: 'Look there'"
+        ];
 
-    let i = 0;
-    let hasStarted = false;
+        let logIdx = 0;
+        let logStarted = false;
 
-    function typeLog() {
-        const logBody = document.getElementById('log-body');
-        if (i < logs.length) {
-            const p = document.createElement('p');
-            p.textContent = logs[i];
-            logBody.appendChild(p);
-            logBody.scrollTop = logBody.scrollHeight; 
-            i++;
-            // Increased from 2000 to 3000 for a "tad bit slower" pace
-            setTimeout(typeLog, 3000); 
-        }
-    }
-
-    // This part "watches" the terminal
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting && !hasStarted) {
-                hasStarted = true; // Prevents it from restarting every time you scroll
-                setTimeout(typeLog, 500); // Small delay before typing starts
+        function typeLog() {
+            const logBody = document.getElementById('log-body');
+            if (logIdx < logs.length) {
+                const p = document.createElement('p');
+                p.textContent = logs[logIdx];
+                logBody.appendChild(p);
+                logBody.scrollTop = logBody.scrollHeight;
+                logIdx++;
+                setTimeout(typeLog, 3000);
             }
-        });
-    }, { threshold: 0.5 }); // Trigger when 50% of terminal is visible
+        }
 
-    observer.observe(document.querySelector('.terminal-container'));
-</script>
+        const terminalObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !logStarted) {
+                    logStarted = true;
+                    setTimeout(typeLog, 500);
+                }
+            });
+        }, { threshold: 0.5 });
 
-const componentData = {
-    esp32: {
-        title: "ESP32 (Microcontroller)",
-        desc: "The 'Brain'. Reads input from sensors, processes data using programmed logic, and sends output signals to the audio module."
-    },
-    mpu: {
-        title: "MPU6050 (Motion Sensor)",
-        desc: "Contains an Accelerometer and Gyroscope. It detects hand tilt and motion direction to identify orientation-based gestures."
-    },
-    flex: {
-        title: "Flex Sensors (x5)",
-        desc: "Variable resistors that change voltage based on finger bending. Converts physical motion into electrical signals for the ESP32."
-    },
-    audio: {
-        title: "DFPlayer Mini",
-        desc: "The voice module. Reads audio files from a microSD card and plays pre-recorded speech like 'Hello' or 'Help'."
-    },
-    speaker: {
-        title: "8Ω 2W Speaker",
-        desc: "Converts electrical signals from the DFPlayer into sound waves, producing audible speech for communication."
-    },
-    resistors: {
-        title: "10kΩ Resistors",
-        desc: "Essential for the voltage divider circuit. They provide a reference resistance to convert sensor changes into measurable voltage."
-    }
-};
+        terminalObserver.observe(document.querySelector('.terminal-container'));
 
-function showInfo(key) {
-    const data = componentData[key];
-    document.getElementById('panel-title').innerText = data.title;
-    document.getElementById('panel-desc').innerText = data.desc;
-    document.getElementById('info-panel').classList.add('active');
-}
+        // 2. Product Anatomy Logic
+        const componentData = {
+            esp32: { title: "ESP32 (Microcontroller)", desc: "The 'Brain'. Reads input from sensors, processes data using programmed logic, and sends output signals to the audio module." },
+            mpu: { title: "MPU6050 (Motion Sensor)", desc: "Contains an Accelerometer and Gyroscope. It detects hand tilt and motion direction to identify orientation-based gestures." },
+            flex: { title: "Flex Sensors (x5)", desc: "Variable resistors that change voltage based on finger bending. Converts physical motion into electrical signals." },
+            audio: { title: "DFPlayer Mini", desc: "The voice module. Reads audio files from a microSD card and plays pre-recorded speech like 'Hello' or 'Help'." },
+            speaker: { title: "8Ω 2W Speaker", desc: "Converts electrical signals from the DFPlayer into sound waves, producing audible speech." },
+            resistors: { title: "10kΩ Resistors", desc: "Essential for the voltage divider circuit. They provide a reference resistance to convert sensor changes into measurable voltage." }
+        };
 
-function closePanel() {
-    document.getElementById('info-panel').classList.remove('active');
-}
+        function showInfo(key) {
+            const data = componentData[key];
+            document.getElementById('panel-title').innerText = data.title;
+            document.getElementById('panel-desc').innerText = data.desc;
+            document.getElementById('info-panel').classList.add('active');
+        }
 
-</script>
+        function closePanel() {
+            document.getElementById('info-panel').classList.remove('active');
+        }
+
+        // 3. Physics Simulator Logic
+        function updateSimulator() {
+            const rFlex = document.getElementById('resistor-slider').value;
+            const rFixed = 10000; // 10k fixed resistor
+            const vIn = 3.3; // ESP32 voltage
+            
+            // Voltage Divider Formula: Vout = Vin * (Rfixed / (Rflex + Rfixed))
+            const vOut = vIn * (rFixed / (parseInt(rFlex) + rFixed));
+            
+            document.getElementById('r-val').innerText = (rFlex/1000).toFixed(1) + "k Ω";
+            document.getElementById('v-out').innerText = vOut.toFixed(2) + " V";
+        }
+    </script>
 </body>
 </html>
