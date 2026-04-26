@@ -6,7 +6,14 @@
     <title>Kinetovox | Signet</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script src="https://polyfill.io/v4/polyfill.min.js?features=es6"></script>
+    <script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
@@ -167,22 +174,32 @@
     ];
 
     let i = 0;
+    let hasStarted = false;
+
     function typeLog() {
         const logBody = document.getElementById('log-body');
         if (i < logs.length) {
             const p = document.createElement('p');
             p.textContent = logs[i];
             logBody.appendChild(p);
-            logBody.scrollTop = logBody.scrollHeight; // Auto-scrolls to bottom
+            logBody.scrollTop = logBody.scrollHeight; 
             i++;
-            setTimeout(typeLog, 2000);
+            // Increased from 2000 to 3000 for a "tad bit slower" pace
+            setTimeout(typeLog, 3000); 
         }
     }
 
-    // This starts the typing as soon as the page loads
-    window.onload = () => {
-        setTimeout(typeLog, 1000);
-    };
+    // This part "watches" the terminal
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !hasStarted) {
+                hasStarted = true; // Prevents it from restarting every time you scroll
+                setTimeout(typeLog, 500); // Small delay before typing starts
+            }
+        });
+    }, { threshold: 0.5 }); // Trigger when 50% of terminal is visible
+
+    observer.observe(document.querySelector('.terminal-container'));
 </script>
 </body>
 </html>

@@ -132,3 +132,11 @@ section { min-height: 100vh; padding: 120px 10%; display: flex; flex-direction: 
     overflow-y: auto;
     line-height: 1.6;
 }
+
+.flow-connector {
+    height: 2px;
+    background: linear-gradient(90s, transparent, #00ff41, transparent);
+    width: 50px;
+    position: relative;
+    box-shadow: 0 0 10px #00ff41;
+}
