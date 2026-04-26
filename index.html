@@ -39,31 +39,33 @@
     </section>
 
     <section id="product" class="product-section">
-        <div class="section-header">
-            <h2>The Anatomy of Signet</h2>
-            <p>Precision engineering meets human necessity.</p>
-        </div>
+    <div class="section-header">
+        <h2>Product Anatomy</h2>
+        <p>Click the components to see how Signet processes your world.</p>
+    </div>
 
-        <div class="glove-container">
-            <div class="glove-visual">
-                <div class="hotspot" style="top: 20%; left: 45%;" onclick="showDetail('flex')">
-                    <div class="pulse"></div>
-                </div>
-                <div class="hotspot" style="top: 55%; left: 55%;" onclick="showDetail('esp32')">
-                    <div class="pulse"></div>
-                </div>
-                <div class="hotspot" style="top: 75%; left: 35%;" onclick="showDetail('mpu')">
-                    <div class="pulse"></div>
-                </div>
-                <img src="https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?auto=format&fit=crop&q=80&w=1000" alt="Smart Glove Visual" class="glove-img">
-            </div>
+    <div class="anatomy-wrapper">
+        <img src="glove-anatomy.jpg" alt="Signet Glove Hardware" class="anatomy-img">
 
-            <div id="detail-box" class="detail-box">
-                <h3 id="part-title">Interactive Core</h3>
-                <p id="part-desc">Click on the glowing sensors to explore how Signet captures the nuance of human gesture.</p>
-            </div>
+        <div class="hotspot" style="top: 25%; left: 18%;" onclick="showInfo('esp32')"></div>
+        
+        <div class="hotspot" style="top: 45%; left: 8%;" onclick="showInfo('mpu')"></div>
+        
+        <div class="hotspot" style="top: 75%; left: 10%;" onclick="showInfo('flex')"></div>
+
+        <div class="hotspot" style="top: 15%; left: 75%;" onclick="showInfo('audio')"></div>
+
+        <div class="hotspot" style="top: 55%; left: 85%;" onclick="showInfo('speaker')"></div>
+
+        <div class="hotspot" style="top: 85%; left: 70%;" onclick="showInfo('resistors')"></div>
+
+        <div id="info-panel" class="glass-panel">
+            <h3 id="panel-title">Select a component</h3>
+            <p id="panel-desc">Click on the labels to see technical details.</p>
+            <button onclick="closePanel()" class="close-btn">×</button>
         </div>
-    </section>
+    </div>
+</section>
 
     <section id="working" class="working-section">
         <div class="section-header">
@@ -201,5 +203,43 @@
 
     observer.observe(document.querySelector('.terminal-container'));
 </script>
+
+const componentData = {
+    esp32: {
+        title: "ESP32 (Microcontroller)",
+        desc: "The 'Brain'. Reads input from sensors, processes data using programmed logic, and sends output signals to the audio module."
+    },
+    mpu: {
+        title: "MPU6050 (Motion Sensor)",
+        desc: "Contains an Accelerometer and Gyroscope. It detects hand tilt and motion direction to identify orientation-based gestures."
+    },
+    flex: {
+        title: "Flex Sensors (x5)",
+        desc: "Variable resistors that change voltage based on finger bending. Converts physical motion into electrical signals for the ESP32."
+    },
+    audio: {
+        title: "DFPlayer Mini",
+        desc: "The voice module. Reads audio files from a microSD card and plays pre-recorded speech like 'Hello' or 'Help'."
+    },
+    speaker: {
+        title: "8Ω 2W Speaker",
+        desc: "Converts electrical signals from the DFPlayer into sound waves, producing audible speech for communication."
+    },
+    resistors: {
+        title: "10kΩ Resistors",
+        desc: "Essential for the voltage divider circuit. They provide a reference resistance to convert sensor changes into measurable voltage."
+    }
+};
+
+function showInfo(key) {
+    const data = componentData[key];
+    document.getElementById('panel-title').innerText = data.title;
+    document.getElementById('panel-desc').innerText = data.desc;
+    document.getElementById('info-panel').classList.add('active');
+}
+
+function closePanel() {
+    document.getElementById('info-panel').classList.remove('active');
+}
 </body>
 </html>
